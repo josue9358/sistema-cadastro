@@ -27,7 +27,7 @@ HTML + CSS – interface simples para o formulário de cadastro
 🔔 Exibição de mensagem de sucesso após o cadastro
 
 # Clone este repositório
-git clone https://github.com/SEU-USUARIO/cadastro-whatsapp.git
+git clone https://github.com/josue9358/sistema-cadastro.git
 
 # Entre na pasta do projeto
 cd sistema-cadastro
