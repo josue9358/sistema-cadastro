@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Cadastro de Usuário</h1>
+
+  <form id="cadastroForm">
+    <input type="text" id="nome" placeholder="Digite seu nome"><br><br>
+    <input type="text" id="telefone" placeholder="Digite seu telefone"><br><br>
+    <input type="email" id="email" placeholder="Digite seu e-mail"><br><br>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <p id="mensagem"></p>
+
+  <script>
+    const form = document.getElementById('cadastroForm');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+      const email = document.getElementById('email').value;
+
+      const dados = { nome, telefone, email };
+
+      try {
+        const resposta = await fetch('http://localhost:3000/usuarios', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const resultado = await resposta.json();
+        alert(resultado.message || 'Usuário cadastrado🚀');
+        form.reset();
+        mensagem.textContent = '';
+      } catch (erro) {
+        mensagem.textContent = 'Erro ao conectar com o servidor.';
+        console.error(erro);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
